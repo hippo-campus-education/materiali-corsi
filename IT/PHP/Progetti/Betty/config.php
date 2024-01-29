@@ -1,4 +1,5 @@
 <?php
+
 /**
  * config.php - File di configurazione esterno per la connessione al database MySQL.
  *
@@ -111,6 +112,7 @@ if ($link === false) {
 // mysqli_close($link);
 
 // Impostazioni Applicativo
+define('BASE_PATH', '/corso-php/progetto-Betty/Betty-1.0');  // Sostituisci con il tuo percorso di base
 $titolo_applicazione = "Betty Dashboard";
 
 ?>

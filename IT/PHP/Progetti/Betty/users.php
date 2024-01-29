@@ -41,26 +41,30 @@ require_once("lib/dblib.php");
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Clienti</h2>
+                        <h2 class="pull-left">Utenti</h2>
                         <a href="create.php" class="btn btn-success pull-right">
-                            <i class="fa fa-plus"></i> Aggiungi nuovo cliente
+                            <i class="fa fa-plus"></i> Aggiungi nuovo utente
                         </a>
                     </div>
                     <?php
 
 
                     // Tentativo di esecuzione select query 
-                    $sql = $sql_tutti_clienti;
-                    // $sql = "SELECT * FROM clienti";
-                    if ($result = mysqli_query($link, $sql)) {
+                    //$sql = $sql_tutti_utenti;
+                    $sql_users = "SELECT users.*, nome_agenzia AS nomeagenzia FROM users JOIN agenzie ON users.agenzia_id=agenzie.id";
+                    if ($result = mysqli_query($link, $sql_users)) {
                         if (mysqli_num_rows($result) > 0) {
                             echo '<table class="table table-bordered table-striped">';
                             echo "<thead>";
                             echo "<tr>";
                             echo "<th>#</th>";
+                            echo "<th>Username</th>";
                             echo "<th>Cognome</th>";
                             echo "<th>Nome</th>";
+                            echo "<th>Email</th>";
                             echo "<th>Telefono</th>";
+                            echo "<th>Citta</th>";
+                            echo "<th>Agenzia</th>";
                             echo "<th>Azione</th>";
                             echo "</tr>";
                             echo "</thead>";
@@ -68,9 +72,13 @@ require_once("lib/dblib.php");
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
                                 echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['username'] . "</td>";
                                 echo "<td>" . $row['cognome'] . "</td>";
                                 echo "<td>" . $row['nome'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
                                 echo "<td>" . $row['telefono'] . "</td>";
+                                echo "<td>" . $row['citta'] . "</td>";
+                                echo "<td>" . $row['nomeagenzia'] . "</td>";
                                 echo "<td>";
                                 echo '<a href="read.php?id=' . $row['id'] . '" class="mr-3" title="Vedi Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                 echo '<a href="update.php?id=' . $row['id'] . '" class="mr-3" title="Aggiorna Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
