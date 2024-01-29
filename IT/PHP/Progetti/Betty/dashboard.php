@@ -3,6 +3,8 @@
 <?php
 // Include config file
 require_once "config.php";
+require_once("nav.php");
+require_once("lib/dblib.php");
 ?>
 
 <head>
@@ -27,41 +29,29 @@ require_once "config.php";
                     <?php echo $titolo_applicazione; ?>
                 </h2>
                 <ul class="nav">
-                    <li class="nav-item">
-                        <a class="nav-link" href="dashboard.php">Clienti</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="transazioni.php">Transazioni</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="tipi_transazioni.php">Tipi Transazioni</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="liste_clienti.php">Liste Clienti</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="search-form.php">Ricerca</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="reset-password.php">Reset Password</a>
-                    </li>
-                    <li class="nav-item">
-                        <a class="nav-link" href="logout.php">Logout</a>
-                    </li>
+                    <?php
+                    // Stampa dinamicamente i link del menu
+                    foreach ($menuItems as $label => $menu_link) {
+                        echo voce_menu($menu_link, $label);
+                    }
+                    ?>
+
                 </ul>
             </div>
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
                         <h2 class="pull-left">Clienti</h2>
-                        <a href="create.php" class="btn btn-success pull-right"><i class="fa fa-plus"></i> Aggiungi
-                            nuovo cliente</a>
+                        <a href="create.php" class="btn btn-success pull-right">
+                            <i class="fa fa-plus"></i> Aggiungi nuovo cliente
+                        </a>
                     </div>
                     <?php
 
 
                     // Tentativo di esecuzione select query 
-                    $sql = "SELECT * FROM clienti";
+                    $sql = $sql_tutti_clienti;
+                    // $sql = "SELECT * FROM clienti";
                     if ($result = mysqli_query($link, $sql)) {
                         if (mysqli_num_rows($result) > 0) {
                             echo '<table class="table table-bordered table-striped">';
