@@ -1,9 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+<?php
+// Include config file
+require_once "config.php";
+?>
 
 <head>
     <meta charset="UTF-8">
-    <title>Betty Dashboard</title>
+    <title>
+        <?php echo $titolo_applicazione; ?>
+    </title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
     <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
@@ -30,7 +36,9 @@
     <div class="wrapper">
         <div class="container-fluid">
             <div class="container">
-                <h2>Dashboard</h2>
+                <h2>
+                    <?php echo $titolo_applicazione; ?>
+                </h2>
                 <ul class="nav">
                     <li class="nav-item">
                         <a class="nav-link" href="dashboard.php">Clienti</a>
@@ -63,8 +71,7 @@
                             nuovo cliente</a>
                     </div>
                     <?php
-                    // Include config file
-                    require_once "config.php";
+
 
                     // Tentativo di esecuzione select query 
                     $sql = "SELECT * FROM clienti";
