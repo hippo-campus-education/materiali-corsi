@@ -2,9 +2,9 @@
 <html lang="en">
 <?php
 // Include config file
-require_once("config.php");
-require_once("nav.php");
-require_once("lib/dblib.php");
+require_once("../config.php");
+require_once("../nav.php");
+require_once("../lib/dblib.php");
 ?>
 
 <head>
@@ -41,40 +41,44 @@ require_once("lib/dblib.php");
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Transazioni Clienti</h2>
-                        <?php echo '<a href="' . BASE_PATH . '/clienti/create.php' . '" class="btn btn-success pull-right">'; ?>
-                        <i class="fa fa-plus"></i> Aggiungi nuovo cliente
+                        <h2 class="pull-left">Utenti</h2>
+                        <a href="create.php" class="btn btn-success pull-right">
+                            <i class="fa fa-plus"></i> Aggiungi nuovo utente
                         </a>
                     </div>
                     <?php
 
 
                     // Tentativo di esecuzione select query 
-                    $sql_transaz_clienti = $sql_transazioni_clienti;
-                    // $sql = "SELECT * FROM clienti";
-                    if ($result = mysqli_query($link, $sql_transaz_clienti)) {
+                    $sql_users = $sql_tutti_utenti_join_agenzie;
+                    //$sql_users = "SELECT users.*, nome_agenzia AS nomeagenzia FROM users JOIN agenzie ON users.agenzia_id=agenzie.id";
+                    if ($result = mysqli_query($link, $sql_users)) {
                         if (mysqli_num_rows($result) > 0) {
                             echo '<table class="table table-bordered table-striped">';
                             echo "<thead>";
                             echo "<tr>";
-
+                            echo "<th>#</th>";
+                            echo "<th>Username</th>";
                             echo "<th>Cognome</th>";
                             echo "<th>Nome</th>";
-                            echo "<th>Importo</th>";
-                            echo "<th>Movimento</th>";
-                            echo "<th>Tipo Transazione</th>";
+                            echo "<th>Email</th>";
+                            echo "<th>Telefono</th>";
+                            echo "<th>Citta</th>";
+                            echo "<th>Agenzia</th>";
                             echo "<th>Azione</th>";
                             echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
-
-                                echo "<td>" . $row['cogn'] . "</td>";
-                                echo "<td>" . $row['nom'] . "</td>";
-                                echo "<td>" . $row['importo'] . "</td>";
-                                echo "<td>" . $row['mov'] . "</td>";
-                                echo "<td>" . $row['tipo_tr'] . "</td>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['username'] . "</td>";
+                                echo "<td>" . $row['cognome'] . "</td>";
+                                echo "<td>" . $row['nome'] . "</td>";
+                                echo "<td>" . $row['email'] . "</td>";
+                                echo "<td>" . $row['telefono'] . "</td>";
+                                echo "<td>" . $row['citta'] . "</td>";
+                                echo "<td>" . $row['nomeagenzia'] . "</td>";
                                 echo "<td>";
                                 echo '<a href="read.php?id=' . $row['id'] . '" class="mr-3" title="Vedi Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                 echo '<a href="update.php?id=' . $row['id'] . '" class="mr-3" title="Aggiorna Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';

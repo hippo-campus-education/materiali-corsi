@@ -1,15 +1,16 @@
 <?php
+
 // Inizializza la sessione
 session_start();
 
 // Verifica se utente già logged in, se si redirect alla welcome page
 if (isset($_SESSION["loggedin"]) && $_SESSION["loggedin"] === true) {
-    header("location: dashboard.php");
+    header("location: ../dashboard.php");
     exit;
 }
 
 // Include config file
-require_once("config.php");
+require_once("../config.php");
 
 // Definizione variabili e le inizializza con valori vuoti
 $username = $password = "";
@@ -64,7 +65,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
                             $_SESSION["username"] = $username;
 
                             // Redirect utente alla welcome page
-                            header("location: dashboard.php");
+                            header("location: ../dashboard.php");
                         } else {
                             // Password non valida, mostra messaggio errore
                             $login_err = "Invalid username or password.";
@@ -139,7 +140,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             <div class="form-group">
                 <input type="submit" class="btn btn-primary" value="Login">
             </div>
-            <p>Non hai un account? <a href="auth/register.php">Registrati ora</a>.</p>
+            <p>Non hai un account? <a href="register.php">Registrati ora</a>.</p>
         </form>
     </div>
 </body>

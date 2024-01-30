@@ -9,12 +9,12 @@ require_once("config.php");
 $menuItems = array(
     "Clienti" => BASE_PATH . "/dashboard.php",
     "Verifica Cassa" => BASE_PATH . "/dashboard.php",
-    "Tipi Transazioni" => BASE_PATH . "/tipi_transazioni.php",
-    "Agenzie" => BASE_PATH . "/dashboard.php",
-    "Utenti" => BASE_PATH . "/users.php",
-    "Ricerca" => BASE_PATH . "/search-form.php",
-    "Reset Password" => BASE_PATH . "/reset-password.php",
-    "Logout" => BASE_PATH . "/logout.php"
+    "Tipi Transazioni" => BASE_PATH . "/transazioni/tipi_transazioni.php",
+    "Agenzie" => BASE_PATH . "/agenzie/agenzie.php",
+    "Utenti" => BASE_PATH . "/users/users.php",
+    "Ricerca" => BASE_PATH . "/ricerca/search-form.php",
+    "Reset Password" => BASE_PATH . "/auth/reset-password.php",
+    "Logout" => BASE_PATH . "/auth/logout.php"
 );
 
 /**

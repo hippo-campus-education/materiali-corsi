@@ -2,9 +2,9 @@
 <html lang="en">
 <?php
 // Include config file
-require_once("config.php");
-require_once("nav.php");
-require_once("lib/dblib.php");
+require_once("../config.php");
+require_once("../nav.php");
+require_once("../lib/dblib.php");
 ?>
 
 <head>
@@ -41,40 +41,32 @@ require_once("lib/dblib.php");
             <div class="row">
                 <div class="col-md-12">
                     <div class="mt-5 mb-3 clearfix">
-                        <h2 class="pull-left">Transazioni Clienti</h2>
-                        <?php echo '<a href="' . BASE_PATH . '/clienti/create.php' . '" class="btn btn-success pull-right">'; ?>
-                        <i class="fa fa-plus"></i> Aggiungi nuovo cliente
+                        <h2 class="pull-left">Agenzie</h2>
+                        <a href="create.php" class="btn btn-success pull-right">
+                            <i class="fa fa-plus"></i> Aggiungi nuova agenzia
                         </a>
                     </div>
                     <?php
 
 
                     // Tentativo di esecuzione select query 
-                    $sql_transaz_clienti = $sql_transazioni_clienti;
-                    // $sql = "SELECT * FROM clienti";
-                    if ($result = mysqli_query($link, $sql_transaz_clienti)) {
+                    $sql_agenzie = $sql_tutte_agenzie;
+                    //$sql_agenzie = "SELECT * FROM agenzie";
+                    if ($result = mysqli_query($link, $sql_agenzie)) {
                         if (mysqli_num_rows($result) > 0) {
                             echo '<table class="table table-bordered table-striped">';
                             echo "<thead>";
                             echo "<tr>";
-
-                            echo "<th>Cognome</th>";
-                            echo "<th>Nome</th>";
-                            echo "<th>Importo</th>";
-                            echo "<th>Movimento</th>";
-                            echo "<th>Tipo Transazione</th>";
+                            echo "<th>#</th>";
+                            echo "<th>Nome Agenzia</th>";
                             echo "<th>Azione</th>";
                             echo "</tr>";
                             echo "</thead>";
                             echo "<tbody>";
                             while ($row = mysqli_fetch_array($result)) {
                                 echo "<tr>";
-
-                                echo "<td>" . $row['cogn'] . "</td>";
-                                echo "<td>" . $row['nom'] . "</td>";
-                                echo "<td>" . $row['importo'] . "</td>";
-                                echo "<td>" . $row['mov'] . "</td>";
-                                echo "<td>" . $row['tipo_tr'] . "</td>";
+                                echo "<td>" . $row['id'] . "</td>";
+                                echo "<td>" . $row['nome_agenzia'] . "</td>";
                                 echo "<td>";
                                 echo '<a href="read.php?id=' . $row['id'] . '" class="mr-3" title="Vedi Record" data-toggle="tooltip"><span class="fa fa-eye"></span></a>';
                                 echo '<a href="update.php?id=' . $row['id'] . '" class="mr-3" title="Aggiorna Record" data-toggle="tooltip"><span class="fa fa-pencil"></span></a>';
