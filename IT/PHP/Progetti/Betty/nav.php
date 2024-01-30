@@ -7,7 +7,7 @@ require_once("config.php");
  * @var array $menuItems
  */
 $menuItems = array(
-    "Clienti" => BASE_PATH . "/dashboard.php",
+    "Clienti" => BASE_PATH . "/clienti/clienti.php",
     "Verifica Cassa" => BASE_PATH . "/dashboard.php",
     "Tipi Transazioni" => BASE_PATH . "/transazioni/tipi_transazioni.php",
     "Agenzie" => BASE_PATH . "/agenzie/agenzie.php",
